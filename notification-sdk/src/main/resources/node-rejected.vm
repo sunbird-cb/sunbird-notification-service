@@ -96,7 +96,6 @@
       font-size: 32px;
       font-weight: 700;
       line-height: normal;
-      padding: 35px 0 0;
       color: #4d4d4d;
     }
 
@@ -118,6 +117,12 @@
       width: 290px;
       text-align: right;
       padding-left: 10px;
+    }
+
+    .mobile-header-center {
+      width: 290px;
+      text-align: center;
+      /* padding-left: 10px; */
     }
 
     .mobile-header-padding-left {
@@ -204,6 +209,11 @@
       height: 0px !important;
       line-height: 1px !important;
       font-size: 1px !important;
+    }
+
+    .comment-text {
+      font-weight: 700;
+      color: #4d4d4d;
     }
   </style>
 
@@ -305,36 +315,23 @@
 <body bgcolor="#f7f7f7">
   <table align="center" cellpadding="0" cellspacing="0" class="container-for-gmail-android" width="100%">
     <tr>
-      <td align="left" valign="top" width="100%"
-        style="background:repeat-x url(http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg) #ffffff;">
+      <td align="left" valign="top" width="100%">
         <center>
-          <img src="http://s3.amazonaws.com/swu-filepicker/SBb2fQPrQ5ezxmqUTgCr_transparent.png"
-            class="force-width-gmail">
-          <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#ffffff"
-            background="http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg"
-            style="background-color:transparent">
+          <table cellspacing="0" cellpadding="0" width="100%">
             <tr>
               <td width="100%" height="80" valign="top" style="text-align: center; vertical-align:middle;">
-                <!--[if gte mso 9]>
-            <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="mso-width-percent:1000;height:80px; v-text-anchor:middle;">
-              <v:fill type="tile" src="http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg" color="#ffffff" />
-              <v:textbox inset="0,0,0,0">
-            <![endif]-->
                 <center>
                   <table cellpadding="0" cellspacing="0" width="600" class="w320">
                     <tr>
-                      #if ($logo_url)
-                      <td class="pull-left mobile-header-padding-left" style="vertical-align: middle;">
-                        <a href=""><img height="47" src='$logo_url' alt="logo"></a>
+                      <!-- #if ($logo_url) -->
+                      <td class="mobile-header-center" style="vertical-align: middle;">
+                        <a href=""><img height="47" src='https://frac.igot-dev.in/img/logos/iGOT_logo_light.svg'
+                            alt="logo"></a>
                       </td>
-                      #end
+                      <!-- #end -->
                     </tr>
                   </table>
                 </center>
-                <!--[if gte mso 9]>
-              </v:textbox>
-            </v:rect>
-            <![endif]-->
               </td>
             </tr>
           </table>
@@ -347,21 +344,33 @@
           <table cellspacing="0" cellpadding="0" width="600" class="w320">
             <tr>
               <td class="header-lg">
-                $type rejected
+                $messageTitle
               </td>
             </tr>
             <tr>
               <td class="free-text">
-                The $type $nodeName ($nodeId) you created has been rejected. The rejection message is $rejectionMessage.
+                The $type '<a href=$nodePath>$nodeName ($nodeId)</a>'
+                you created has been rejected.
+              </td>
+            </tr>
+            #if ($rejectionMessage)
+            <tr>
+              <td class="free-text">
+                Comment from reviewer is <b class="comment-text">"$rejectionMessage"</b>.
+              </td>
+            </tr>
+            #end
+            <tr>
+              <td class="free-text">
                 Please log in to your FRACing tool to view the details.
               </td>
             </tr>
             <tr>
               <td class="button">
                 <div>
-                  <a href="https://frac.igot-dev.in/collections"
+                  <a href=$nodePath
                     style="background-color:#2E3094;border-radius:5px;color:#ffffff;display:inline-block;font-family:'Cabin', Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;line-height:45px;text-align:center;text-decoration:none;width:155px;-webkit-text-size-adjust:none;mso-hide:all;">
-                    View $type</a>
+                    <b>View competency</b></a>
                 </div>
               </td>
             </tr>
