@@ -36,7 +36,7 @@ node('build-slave') {
                 sh 'git log -1'
 		sh "cd $currentDir"
 		// Build the dependencies for sunbird user-org service
-                sh 'mvn clean install'
+                sh 'mvn clean install -DskipTests'
             }
             stage('Package') {
 		// Create a deployment package
