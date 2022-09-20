@@ -387,29 +387,11 @@
         <center>
           <table cellspacing="0" cellpadding="0" width="600" class="w320">
             <tr>
-                <td class="text-center" colspan="4">
-                  <p> Your weekly learning update is here.
-                </p>
-                </td>
-              </tr>
-            <tr>
               <td class="header-lg" colspan="4">
-                Check out exciting new courses that launched this week!
+                We have published $noOfCourses new courses this week, Here's a sneak peak for you!
               </td>
-            </tr>
-            <tr>
-              <td class="pull-left" colspan="4">
-                <p class="mb-0">Namaste,</p>
-              </td>
-            </tr>
-            <tr>
-              <td class="pull-left" colspan="4">
-                <p>Here are some exciting new courses we published this week:</p>
-              </td>
-            </tr>
-            
-         
-          
+            </tr>          
+        
             <tr>
               <td colspan="1" class="course-table-tr">
                #if ($course1)
@@ -533,7 +515,6 @@
                   </a>
                  #end
                 </td>
-  
              
               </tr>
               <tr>
