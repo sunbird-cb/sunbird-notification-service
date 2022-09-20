@@ -355,9 +355,15 @@
       }
     }
   </style>
+  <style>
+/* ... */
+/*--- Preheader declaration in style block in addition to inline for Outlook */
+.preheader { display:none !important; visibility:hidden; opacity:0; color:transparent; height:0; width:0; }
+</style>
 </head>
 
 <body bgcolor="#f7f7f7">
+<span class="preheader" style="display: none !important; visibility: hidden; opacity: 0; color: transparent; height: 0; width: 0;">Your weekly learning update is here</span>
   <table align="center" cellpadding="0" cellspacing="0" class="container-for-gmail-android" width="100%">
     <tr>
       <td align="left" valign="top" width="100%">
@@ -391,8 +397,7 @@
                 We have published $noOfCourses new courses this week, Here's a sneak peak for you!
               </td>
             </tr>          
-        
-            <tr>
+         <tr>
               <td colspan="1" class="course-table-tr">
                #if ($course1)
                 <a href='$course1_url' target="_blank">
@@ -515,6 +520,7 @@
                   </a>
                  #end
                 </td>
+  
              
               </tr>
               <tr>
