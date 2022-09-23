@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 </a>
-                <a href='$course2_url' target="_#if ($course1)blank">
+                <a href='$course2_url' target="_blank">
                 <div class="content-box">
                     <div class="image-box">
                         <img src="$course2_thumbnail">
