@@ -37,7 +37,7 @@
 
         .content-box {
             width: 270px;
-            height: 210px;
+            height: 215px;
             margin-bottom: 30px;
             overflow: hidden;
             border-radius: 0px;
@@ -60,7 +60,7 @@
         .content-text-box {
             height: calc(100% - 155px);
             width: 100%;
-            padding-top: 10px;
+            padding-top: 6px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -104,10 +104,11 @@
 
         .right-logo-box {
             display: flex;
-                width: 280px;
-                height: 40px;
-                margin-left: 200px;
+            width: 280px;
+            height: 40px;
+            margin-left: 200px;
         }
+
         .right-logo-box img {
             height: 40px;
         }
@@ -119,7 +120,7 @@
             object-fit: cover;
             object-position: center;
             margin: 20px auto 0 auto;
-            position:relative;
+            position: relative;
         }
 
         .banner-section img {
@@ -136,8 +137,8 @@
             margin-right: auto;
             border-radius: 4px 4px;
             background-color: #0074b6;
-            color: #fff!important;
-            text-decoration:none!important;
+            color: #fff !important;
+            text-decoration: none !important;
             font: 700 14px/20px Lato;
             padding: 10px 0;
             box-sizing: border-box;
@@ -158,16 +159,19 @@
         .mr-20 {
             margin-right: 20px;
         }
-          .button-box {
+
+        .button-box {
             width: 150px;
             margin-left: 225px;
         }
-         .text-box {
+
+
+        .text-box {
             z-index: 9;
-            position: absolute;
+            position: relative;
             top: 0;
             width: 240px;
-            margin-top: 80px;
+            margin-top: -154px;
             margin-left: 40px;
             color: #fff;
         }
@@ -183,17 +187,30 @@
             margin-bottom: 0;
             font: 600 32px/38px 'Montserrat';
         }
+        .card-text-table {
+            width: 100%;
+            border:none;
+        }
 
         /*--- Preheader declaration in style block in addition to inline for Outlook */
 
 
-.preheader { display:none !important; visibility:hidden; opacity:0; color:transparent; height:0; width:0; }
+        .preheader {
+            display: none !important;
+            visibility: hidden;
+            opacity: 0;
+            color: transparent;
+            height: 0;
+            width: 0;
+        }
     </style>
 </head>
 
 <body>
     <div class="main-div">
-    <span class="preheader" style="display: none !important; visibility: hidden; opacity: 0; color: transparent; height: 0; width: 0;">Your weekly learning update is here, have a look.............</span>
+        <span class="preheader"
+            style="display: none !important; visibility: hidden; opacity: 0; color: transparent; height: 0; width: 0;">Your
+            weekly learning update is here, have a look.............</span>
         <header>
             <div class="header-inner-box">
                 <div class="left-logo-box">
@@ -205,18 +222,19 @@
             </div>
 
         </header>
-         <div class="banner-section">
+        <div class="banner-section">
             <img src="https://igot.blob.core.windows.net/public/emailHeaders/Banner_with_pm.png">
             <div class="text-box">
                 <h5 class="medium-font">we have published</h5>
-                <h4 class="large-font">$noOfCourses new courses
+                <h4 class="large-font">6 new courses
                     this week.</h4>
             </div>
         </div>
         <div class="content-main-section">
             <div class="button-box">
-                    <a href="https://portal.igot-dev.in/app/globalsearch?tab=Learn&q=&p=Trending&f=%7B%22primaryCategory%22:%20%5B%22Course%22%5D,%20%22contentType%22:%20%5B%22Course%22%5D%7D" class="button view-btn mb-24 mt-24" target="_blank">View all courses</a>
-                </div>
+                <a href="https://portal.igot-dev.in/app/globalsearch?tab=Learn&q=&p=Trending&f=%7B%22primaryCategory%22:%20%5B%22Course%22%5D,%20%22contentType%22:%20%5B%22Course%22%5D%7D"
+                    class="button view-btn mb-24 mt-24" target="_blank">View all courses</a>
+            </div>
             <h4 class="heading-text">Here's a sneak peek for you!</h4>
             <div class="content-inner">
                 <table>
@@ -226,12 +244,15 @@
                             <a href='$course1_url' target="_blank">
                                 <div class="content-box mr-20">
                                     <div class="image-box">
-                                        <img
-                                            src="$course1_thumbnail">
+                                        <img src="$course1_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <p class="course-name">$course1_name</p>
-                                        <span class="course-duration">$course1_duration</span>
+                                        <table class="card-text-table">
+                                            <tbody>
+                                                <tr><td><p class="course-name">$course1_name</p></td></tr>
+                                                <tr><td><span class="course-duration">$course1_duration</span></td></tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </a>
@@ -242,12 +263,15 @@
                             <a href='$course2_url' target="_blank">
                                 <div class="content-box">
                                     <div class="image-box">
-                                        <img
-                                            src="$course2_thumbnail">
+                                        <img src="$course2_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <p class="course-name">$course2_name</p>
-                                        <span class="course-duration">$course2_duration</span>
+                                        <table class="card-text-table">
+                                            <tbody>
+                                                <tr><td><p class="course-name">$course2_name</p></td></tr>
+                                        <tr><td><span class="course-duration">$course2_duration</span></td></tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </a>
@@ -260,12 +284,15 @@
                             <a href='$course3_url' target="_blank">
                                 <div class="content-box mr-20">
                                     <div class="image-box">
-                                        <img
-                                            src="$course3_thumbnail">
+                                        <img src="$course3_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <p class="course-name">$course3_name</p>
-                                        <span class="course-duration">$course3_duration</span>
+                                        <table class="card-text-table">
+                                            <tbody>
+                                                <tr><td><p class="course-name">$course3_name</p></td></tr>
+                                        <tr><td><span class="course-duration">$course3_duration</span></td></tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </a>
@@ -276,12 +303,15 @@
                             <a href='$course4_url' target="_blank">
                                 <div class="content-box">
                                     <div class="image-box">
-                                        <img
-                                            src="$course4_thumbnail">
+                                        <img src="$course4_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <p class="course-name">$course4_name</p>
-                                        <span class="course-duration">$course4_duration</span>
+                                        <table class="card-text-table">
+                                            <tbody>
+                                                <tr><td><p class="course-name">$course4_name</p></td></tr>
+                                        <tr><td><span class="course-duration">$course4_duration</span></td></tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </a>
@@ -294,12 +324,15 @@
                             <a href='$course5_url' target="_blank">
                                 <div class="content-box mr-20">
                                     <div class="image-box">
-                                        <img
-                                            src="$course5_thumbnail">
+                                        <img src="$course5_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <p class="course-name">$course5_name</p>
-                                        <span class="course-duration">$course5_duration</span>
+                                        <table class="card-text-table">
+                                            <tbody>
+                                                <tr><td><p class="course-name">$course5_name</p></td></tr>
+                                        <tr><td><span class="course-duration">$course5_duration</span></td></tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </a>
@@ -310,12 +343,15 @@
                             <a href='$course6_url' target="_blank">
                                 <div class="content-box mr-20">
                                     <div class="image-box">
-                                        <img
-                                            src="$course6_thumbnail">
+                                        <img src="$course6_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <p class="course-name">$course6_name</p>
-                                        <span class="course-duration">$course6_duration</span>
+                                        <table class="card-text-table">
+                                            <tbody>
+                                                <tr><td><p class="course-name">$course6_name</p></td></tr>
+                                        <tr><td><span class="course-duration">$course6_duration</span></td></tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </a>
@@ -328,12 +364,15 @@
                             <a href='$course7_url' target="_blank">
                                 <div class="content-box mr-20">
                                     <div class="image-box">
-                                        <img
-                                            src="$course7_thumbnail">
+                                        <img src="$course7_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <p class="course-name">$course7_name</p>
-                                        <span class="course-duration">$course7_duration</span>
+                                        <table class="card-text-table">
+                                            <tbody>
+                                                <tr><td><p class="course-name">$course7_name</p></td></tr>
+                                            <tr><td><span class="course-duration">$course7_duration</span></td></tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </a>
@@ -344,12 +383,15 @@
                             <a href='$course8_url' target="_blank">
                                 <div class="content-box mr-20">
                                     <div class="image-box">
-                                        <img
-                                            src="$course8_thumbnail">
+                                        <img src="$course8_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <p class="course-name">$course8_name</p>
-                                        <span class="course-duration">$course8_duration</span>
+                                        <table class="card-text-table">
+                                            <tbody>
+                                                <tr><td><p class="course-name">$course8_name</p></td></tr>
+                                                <tr><td><span class="course-duration">$course8_duration</span></td></tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </a>
@@ -359,7 +401,8 @@
                     <tr>
                         <td colspan="4">
                             <div class="button-box">
-                                <a href="https://portal.igot-dev.in/app/globalsearch?tab=Learn&q=&p=Trending&f=%7B%22primaryCategory%22:%20%5B%22Course%22%5D,%20%22contentType%22:%20%5B%22Course%22%5D%7D" class="button view-btn mb-24 mt-24" target="_blank">View all courses</a>
+                                <a href="https://portal.igot-dev.in/app/globalsearch?tab=Learn&q=&p=Trending&f=%7B%22primaryCategory%22:%20%5B%22Course%22%5D,%20%22contentType%22:%20%5B%22Course%22%5D%7D"
+                                    class="button view-btn mb-24 mt-24" target="_blank">View all courses</a>
                             </div>
                         </td>
                     </tr>
