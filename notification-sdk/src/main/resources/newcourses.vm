@@ -175,7 +175,7 @@
             width: 240px;
             margin-top: -160px;
             margin-left: 40px;
-            color: #fff;
+             color: #fff !important;
             border: 1px solid red !important;
         }
 
@@ -194,6 +194,10 @@
             width: 100%;
             border:none;
         }
+        
+        img {
+    display: block;
+}
 
         /*--- Preheader declaration in style block in addition to inline for Outlook */
 
@@ -226,7 +230,7 @@
 
         </header>
         <div class="banner-section">
-            <img src="https://igot.blob.core.windows.net/public/emailHeaders/Banner_with_pm.png">
+            <img src="https://www.igot-dev.in/img/sliderImg1.jpg">
             <div class="text-box">
                 <h5 class="medium-font">we have published</h5>
                 <h4 class="large-font">$noOfCourses new courses
