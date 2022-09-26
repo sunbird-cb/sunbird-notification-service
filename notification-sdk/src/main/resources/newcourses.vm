@@ -16,6 +16,7 @@
             display: block;
             padding: 20px 20px;
             box-sizing: border-box;
+            background-color: #fff;
         }
 
         .content-inner {
@@ -169,11 +170,20 @@
         .mr-20 {
             margin-right: 20px;
         }
+          .button-box {
+            width: 150px;
+            margin-left: 225px;
+        }
+        /*--- Preheader declaration in style block in addition to inline for Outlook */
+
+
+.preheader { display:none !important; visibility:hidden; opacity:0; color:transparent; height:0; width:0; }
     </style>
 </head>
 
 <body>
     <div class="main-div">
+    <span class="preheader" style="display: none !important; visibility: hidden; opacity: 0; color: transparent; height: 0; width: 0;">Your weekly learning update is here, have a look.............</span>
         <header>
             <div class="header-inner-box">
                 <div class="left-logo-box">
@@ -192,7 +202,9 @@
             <img src="https://www.igot-dev.in/img/sliderImg1.jpg">
         </div>
         <div class="content-main-section">
-         <a href="https://portal.igot-dev.in/app/globalsearch?tab=Learn&q=&p=Trending&f=%7B%22primaryCategory%22:%20%5B%22Course%22%5D,%20%22contentType%22:%20%5B%22Course%22%5D%7D" class="button view-btn mb-24 mt-24" target="_blank">View all courses</a>
+            <div class="button-box">
+                    <a href="https://portal.igot-dev.in/app/globalsearch?tab=Learn&q=&p=Trending&f=%7B%22primaryCategory%22:%20%5B%22Course%22%5D,%20%22contentType%22:%20%5B%22Course%22%5D%7D" class="button view-btn mb-24 mt-24" target="_blank">View all courses</a>
+                </div>
             <h4 class="heading-text">Here's a sneak peak for you!</h4>
             <div class="content-inner">
                 <table>
@@ -333,7 +345,9 @@
                         </td>
                     </tr>
                 </table>
-<a href="https://portal.igot-dev.in/app/globalsearch?tab=Learn&q=&p=Trending&f=%7B%22primaryCategory%22:%20%5B%22Course%22%5D,%20%22contentType%22:%20%5B%22Course%22%5D%7D" class="button view-btn mb-24 mt-24" target="_blank">View all courses</a>
+                <div class="button-box">
+                    <a href="https://portal.igot-dev.in/app/globalsearch?tab=Learn&q=&p=Trending&f=%7B%22primaryCategory%22:%20%5B%22Course%22%5D,%20%22contentType%22:%20%5B%22Course%22%5D%7D" class="button view-btn mb-24 mt-24" target="_blank">View all courses</a>
+                </div>
             </div>
         </div>
 
