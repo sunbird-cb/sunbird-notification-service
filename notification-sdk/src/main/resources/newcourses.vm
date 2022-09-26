@@ -174,7 +174,7 @@
             margin-top: -154px;
             margin-left: 40px;
             color: #fff !important;
-            border: 1px hidden;
+            border: 1px solid red !important;
         }
 
         .text-box h5.medium-font {
