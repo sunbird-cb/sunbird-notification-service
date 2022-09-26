@@ -124,7 +124,6 @@
         }
 
         .banner-section img {
-            position: relative;
             width: 100%;
             height: 100%;
         }
@@ -168,28 +167,23 @@
 
 
         .text-box {
-        border: 1px hidden;
-        overflow: auto;
-            z-index: 9;
+            z-index: 99;
             position: relative;
             top: 0;
             width: 240px;
             margin-top: -154px;
             margin-left: 40px;
-            color: #fff;
+            color: #fff !important;
+            border: 1px hidden;
         }
 
         .text-box h5.medium-font {
-        border: 1px hidden;
-        overflow: auto;
             margin-top: 0;
             margin-bottom: 4px;
             font: 600 20px/28px 'Montserrat';
         }
 
         .text-box h4.large-font {
-        border: 1px hidden;
-        overflow: auto;
             margin-top: 0;
             margin-bottom: 0;
             font: 600 32px/38px 'Montserrat';
@@ -233,7 +227,7 @@
             <img src="https://igot.blob.core.windows.net/public/emailHeaders/Banner_with_pm.png">
             <div class="text-box">
                 <h5 class="medium-font">we have published</h5>
-                <h4 class="large-font">6 new courses
+                <h4 class="large-font">$noOfCourses new courses
                     this week.</h4>
             </div>
         </div>
