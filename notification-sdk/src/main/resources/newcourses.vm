@@ -37,7 +37,7 @@
 
         .content-box {
             width: 270px;
-            height: 215px;
+            height: 210px;
             margin-bottom: 30px;
             overflow: hidden;
             border-radius: 0px;
@@ -60,7 +60,7 @@
         .content-text-box {
             height: calc(100% - 155px);
             width: 100%;
-            padding-top: 6px;
+            padding-top: 10px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -120,12 +120,13 @@
             object-fit: cover;
             object-position: center;
             margin: 20px auto 0 auto;
-            position: relative;
+
         }
 
         .banner-section img {
             width: 100%;
             height: 100%;
+
         }
 
         .view-btn {
@@ -165,12 +166,13 @@
             margin-left: 225px;
         }
 
-
         .text-box {
-            z-index: 9;
+            /*z-index: 99999;
             position: absolute;
-            top: 36%;
+             margin-top: 80px;
+            top: 37%; */
             width: 240px;
+
             margin-left: 40px;
             color: #fff;
         }
@@ -185,10 +187,6 @@
             margin-top: 0;
             margin-bottom: 0;
             font: 600 32px/38px 'Montserrat';
-        }
-        .card-text-table {
-            width: 100%;
-            border:none;
         }
 
         /*--- Preheader declaration in style block in addition to inline for Outlook */
@@ -221,9 +219,9 @@
             </div>
 
         </header>
-        <div class="banner-section">
-            <img src="https://igot.blob.core.windows.net/public/emailHeaders/Banner_with_pm.png">
-            <div class="text-box">
+        <div class="banner-section" style="position:relative">
+            <img src="https://igot.blob.core.windows.net/public/emailHeaders/Banner_with_pm.png" style="z-index:9">
+            <div class="text-box" style="position:absolute; z-index:9999; top:36%;margin-top:0;">
                 <h5 class="medium-font">we have published</h5>
                 <h4 class="large-font">$noOfCourses new courses
                     this week.</h4>
@@ -246,12 +244,8 @@
                                         <img src="$course1_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <table class="card-text-table">
-                                            <tbody>
-                                                <tr><td><p class="course-name">$course1_name</p></td></tr>
-                                                <tr><td><span class="course-duration">$course1_duration</span></td></tr>
-                                            </tbody>
-                                        </table>
+                                        <p class="course-name">$course1_name</p>
+                                        <span class="course-duration">$course1_duration</span>
                                     </div>
                                 </div>
                             </a>
@@ -265,12 +259,8 @@
                                         <img src="$course2_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <table class="card-text-table">
-                                            <tbody>
-                                                <tr><td><p class="course-name">$course2_name</p></td></tr>
-                                        <tr><td><span class="course-duration">$course2_duration</span></td></tr>
-                                            </tbody>
-                                        </table>
+                                        <p class="course-name">$course2_name</p>
+                                        <span class="course-duration">$course2_duration</span>
                                     </div>
                                 </div>
                             </a>
@@ -286,12 +276,8 @@
                                         <img src="$course3_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <table class="card-text-table">
-                                            <tbody>
-                                                <tr><td><p class="course-name">$course3_name</p></td></tr>
-                                        <tr><td><span class="course-duration">$course3_duration</span></td></tr>
-                                            </tbody>
-                                        </table>
+                                        <p class="course-name">$course3_name</p>
+                                        <span class="course-duration">$course3_duration</span>
                                     </div>
                                 </div>
                             </a>
@@ -305,12 +291,8 @@
                                         <img src="$course4_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <table class="card-text-table">
-                                            <tbody>
-                                                <tr><td><p class="course-name">$course4_name</p></td></tr>
-                                        <tr><td><span class="course-duration">$course4_duration</span></td></tr>
-                                            </tbody>
-                                        </table>
+                                        <p class="course-name">$course4_name</p>
+                                        <span class="course-duration">$course4_duration</span>
                                     </div>
                                 </div>
                             </a>
@@ -326,12 +308,8 @@
                                         <img src="$course5_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <table class="card-text-table">
-                                            <tbody>
-                                                <tr><td><p class="course-name">$course5_name</p></td></tr>
-                                        <tr><td><span class="course-duration">$course5_duration</span></td></tr>
-                                            </tbody>
-                                        </table>
+                                        <p class="course-name">$course5_name</p>
+                                        <span class="course-duration">$course5_duration</span>
                                     </div>
                                 </div>
                             </a>
@@ -345,12 +323,8 @@
                                         <img src="$course6_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <table class="card-text-table">
-                                            <tbody>
-                                                <tr><td><p class="course-name">$course6_name</p></td></tr>
-                                        <tr><td><span class="course-duration">$course6_duration</span></td></tr>
-                                            </tbody>
-                                        </table>
+                                        <p class="course-name">$course6_name</p>
+                                        <span class="course-duration">$course6_duration</span>
                                     </div>
                                 </div>
                             </a>
@@ -366,12 +340,8 @@
                                         <img src="$course7_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <table class="card-text-table">
-                                            <tbody>
-                                                <tr><td><p class="course-name">$course7_name</p></td></tr>
-                                            <tr><td><span class="course-duration">$course7_duration</span></td></tr>
-                                            </tbody>
-                                        </table>
+                                        <p class="course-name">$course7_name</p>
+                                        <span class="course-duration">$course7_duration</span>
                                     </div>
                                 </div>
                             </a>
@@ -385,12 +355,8 @@
                                         <img src="$course8_thumbnail">
                                     </div>
                                     <div class="content-text-box">
-                                        <table class="card-text-table">
-                                            <tbody>
-                                                <tr><td><p class="course-name">$course8_name</p></td></tr>
-                                                <tr><td><span class="course-duration">$course8_duration</span></td></tr>
-                                            </tbody>
-                                        </table>
+                                        <p class="course-name">$course8_name</p>
+                                        <span class="course-duration">$course8_duration</span>
                                     </div>
                                 </div>
                             </a>
