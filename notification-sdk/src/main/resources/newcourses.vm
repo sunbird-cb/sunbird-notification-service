@@ -30,14 +30,24 @@
         }
 
         .heading-text {
+            font: 600 32px/48px 'Montserrat';
+            margin-top: 0;
+            margin-bottom: 0px;
+        }
+        .main-text {
             font: 600 16px/24px 'Montserrat';
             margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 0;
         }
-
+        .heading-table {
+            width: 100%;
+        }
+        .margin-top-40 {
+            margin-top: 40px;
+        }
         .content-box {
             width: 270px;
-            height: 215px;
+            height: 210px;
             margin-bottom: 30px;
             overflow: hidden;
             border-radius: 0px;
@@ -60,7 +70,7 @@
         .content-text-box {
             height: calc(100% - 155px);
             width: 100%;
-            padding-top: 6px;
+            padding-top: 10px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -120,12 +130,13 @@
             object-fit: cover;
             object-position: center;
             margin: 20px auto 0 auto;
-            position: relative;
+
         }
 
         .banner-section img {
             width: 100%;
             height: 100%;
+
         }
 
         .view-btn {
@@ -165,13 +176,13 @@
             margin-left: 225px;
         }
 
-
         .text-box {
-            z-index: 9;
-            position: relative;
-            top: 0;
+            /*z-index: 99999;
+            position: absolute;
+             margin-top: 80px;
+            top: 37%; */
             width: 240px;
-            margin-top: -154px;
+
             margin-left: 40px;
             color: #fff;
         }
@@ -187,9 +198,12 @@
             margin-bottom: 0;
             font: 600 32px/38px 'Montserrat';
         }
-        .card-text-table {
+        .text-center {
+            text-align: center;
+        }
+        .table-box, .card-text-table {
+            display: table;
             width: 100%;
-            border:none;
         }
 
         /*--- Preheader declaration in style block in addition to inline for Outlook */
@@ -224,18 +238,27 @@
         </header>
         <div class="banner-section">
             <img src="https://igot.blob.core.windows.net/public/emailHeaders/Banner_with_pm.png">
-            <div class="text-box">
-                <h5 class="medium-font">we have published</h5>
-                <h4 class="large-font">6 new courses
-                    this week.</h4>
-            </div>
+        
         </div>
         <div class="content-main-section">
-            <div class="button-box">
+            <div class="table-box" style="margin-top:40px;">
+                <table class="heading-table">
+                    <tbody>
+                        <tr>
+                            <td><h2 class="heading-text text-center">Stay on top with new skills</h2></td>
+                        </tr>
+                        <tr>
+                            <td><h4 class="main-text text-center" style="color:rgba(0, 0, 0, 0.6);">We have published $noOfCourses new courses this week.</h4></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+               </div>
+            <div class="button-box" style="margin-top:20px; margin-bottom:60px;">
                 <a href="https://portal.igot-dev.in/app/globalsearch?tab=Learn&q=&p=Trending&f=%7B%22primaryCategory%22:%20%5B%22Course%22%5D,%20%22contentType%22:%20%5B%22Course%22%5D%7D"
-                    class="button view-btn mb-24 mt-24" target="_blank">View all courses</a>
+                    class="button view-btn" target="_blank">View all courses</a>
             </div>
-            <h4 class="heading-text">Here's a sneak peek for you!</h4>
+            <h4 class="main-text">Checkout the courses:</h4>
             <div class="content-inner">
                 <table>
                     <tr>
@@ -400,7 +423,7 @@
                     </tr>
                     <tr>
                         <td colspan="4">
-                            <div class="button-box">
+                            <div class="button-box" style="margin-top:0px;">
                                 <a href="https://portal.igot-dev.in/app/globalsearch?tab=Learn&q=&p=Trending&f=%7B%22primaryCategory%22:%20%5B%22Course%22%5D,%20%22contentType%22:%20%5B%22Course%22%5D%7D"
                                     class="button view-btn mb-24 mt-24" target="_blank">View all courses</a>
                             </div>
