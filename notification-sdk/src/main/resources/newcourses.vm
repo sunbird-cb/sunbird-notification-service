@@ -34,17 +34,21 @@
             margin-top: 0;
             margin-bottom: 0px;
         }
+
         .main-text {
             font: 600 16px/24px 'Montserrat';
             margin-top: 0;
             margin-bottom: 0;
         }
+
         .heading-table {
             width: 100%;
         }
+
         .margin-top-40 {
             margin-top: 40px;
         }
+
         .content-box {
             width: 270px;
             height: 210px;
@@ -98,33 +102,14 @@
             width: 100%;
             display: flex;
             flex-direction: row;
-            align-items: center;
-            height: 45px;
             overflow: hidden;
         }
 
         .left-logo-box {
-            width: 80px;
-            height: 45px;
-        }
-
-        .left-logo-box img {
-            height: 45px;
-        }
-
-        .right-logo-box {
-            display: flex;
-            width: 280px;
-            height: 45px;
-            margin-left: 165px;
-        }
-
-        .right-logo-box img {
-            height: 45px;
+            width: 100%;
         }
 
         .banner-section {
-            height: 235px;
             width: 100%;
             overflow: hidden;
             object-fit: cover;
@@ -198,10 +183,13 @@
             margin-bottom: 0;
             font: 600 32px/38px 'Montserrat';
         }
+
         .text-center {
             text-align: center;
         }
-        .table-box, .card-text-table {
+
+        .table-box,
+        .card-text-table {
             display: table;
             width: 100%;
         }
@@ -228,32 +216,38 @@
         <header>
             <div class="header-inner-box">
                 <div class="left-logo-box">
-                    <img src="https://igot.blob.core.windows.net/public/emailimageseparate/iGOT_Logo.png" />
+                    <img src="https://igot.blob.core.windows.net/public/emailimagecombained/All-logos.png">
+                    <!-- <img src="https://igot.blob.core.windows.net/public/emailimageseparate/iGOT_Logo.png" /> -->
                 </div>
-                <div class="right-logo-box">
+                <!-- <div class="right-logo-box">
                     <img src="https://igot.blob.core.windows.net/public/emailimagecombained/dopt_kb.png">
-                </div>
+                </div> -->
             </div>
 
         </header>
         <div class="banner-section">
             <img src="https://www.igot-dev.in/img/sliderImg1.jpg">
-        
+
         </div>
         <div class="content-main-section">
             <div class="table-box" style="margin-top:40px;">
                 <table class="heading-table">
                     <tbody>
                         <tr>
-                            <td><h2 class="heading-text text-center">Stay on top with new skills</h2></td>
+                            <td>
+                                <h2 class="heading-text text-center">Stay on top with new skills</h2>
+                            </td>
                         </tr>
                         <tr>
-                            <td><h4 class="main-text text-center" style="color:rgba(0, 0, 0, 0.6);">We have published $noOfCourses new courses this week.</h4></td>
+                            <td>
+                                <h4 class="main-text text-center" style="color:rgba(0, 0, 0, 0.6);">We have published
+                                    $noOfCourses new courses this week.</h4>
+                            </td>
                         </tr>
-                        
+
                     </tbody>
                 </table>
-               </div>
+            </div>
             <div class="button-box" style="margin-top:20px; margin-bottom:60px;">
                 <a href="https://portal.igot-dev.in/app/globalsearch?tab=Learn&q=&p=Trending&f=%7B%22primaryCategory%22:%20%5B%22Course%22%5D,%20%22contentType%22:%20%5B%22Course%22%5D%7D"
                     class="button view-btn" target="_blank">View all courses</a>
@@ -272,8 +266,14 @@
                                     <div class="content-text-box">
                                         <table class="card-text-table">
                                             <tbody>
-                                                <tr><td><p class="course-name">$course1_name</p></td></tr>
-                                                <tr><td><span class="course-duration">$course1_duration</span></td></tr>
+                                                <tr>
+                                                    <td>
+                                                        <p class="course-name">$course1_name</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="course-duration">$course1_duration</span></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -291,8 +291,14 @@
                                     <div class="content-text-box">
                                         <table class="card-text-table">
                                             <tbody>
-                                                <tr><td><p class="course-name">$course2_name</p></td></tr>
-                                        <tr><td><span class="course-duration">$course2_duration</span></td></tr>
+                                                <tr>
+                                                    <td>
+                                                        <p class="course-name">$course2_name</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="course-duration">$course2_duration</span></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -312,8 +318,14 @@
                                     <div class="content-text-box">
                                         <table class="card-text-table">
                                             <tbody>
-                                                <tr><td><p class="course-name">$course3_name</p></td></tr>
-                                        <tr><td><span class="course-duration">$course3_duration</span></td></tr>
+                                                <tr>
+                                                    <td>
+                                                        <p class="course-name">$course3_name</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="course-duration">$course3_duration</span></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -331,8 +343,14 @@
                                     <div class="content-text-box">
                                         <table class="card-text-table">
                                             <tbody>
-                                                <tr><td><p class="course-name">$course4_name</p></td></tr>
-                                        <tr><td><span class="course-duration">$course4_duration</span></td></tr>
+                                                <tr>
+                                                    <td>
+                                                        <p class="course-name">$course4_name</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="course-duration">$course4_duration</span></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -352,8 +370,14 @@
                                     <div class="content-text-box">
                                         <table class="card-text-table">
                                             <tbody>
-                                                <tr><td><p class="course-name">$course5_name</p></td></tr>
-                                        <tr><td><span class="course-duration">$course5_duration</span></td></tr>
+                                                <tr>
+                                                    <td>
+                                                        <p class="course-name">$course5_name</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="course-duration">$course5_duration</span></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -371,8 +395,14 @@
                                     <div class="content-text-box">
                                         <table class="card-text-table">
                                             <tbody>
-                                                <tr><td><p class="course-name">$course6_name</p></td></tr>
-                                        <tr><td><span class="course-duration">$course6_duration</span></td></tr>
+                                                <tr>
+                                                    <td>
+                                                        <p class="course-name">$course6_name</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="course-duration">$course6_duration</span></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -392,8 +422,14 @@
                                     <div class="content-text-box">
                                         <table class="card-text-table">
                                             <tbody>
-                                                <tr><td><p class="course-name">$course7_name</p></td></tr>
-                                            <tr><td><span class="course-duration">$course7_duration</span></td></tr>
+                                                <tr>
+                                                    <td>
+                                                        <p class="course-name">$course7_name</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="course-duration">$course7_duration</span></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -411,8 +447,14 @@
                                     <div class="content-text-box">
                                         <table class="card-text-table">
                                             <tbody>
-                                                <tr><td><p class="course-name">$course8_name</p></td></tr>
-                                                <tr><td><span class="course-duration">$course8_duration</span></td></tr>
+                                                <tr>
+                                                    <td>
+                                                        <p class="course-name">$course8_name</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="course-duration">$course8_duration</span></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
