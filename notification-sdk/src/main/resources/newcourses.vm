@@ -99,28 +99,28 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            height: 40px;
+            height: 45px;
             overflow: hidden;
         }
 
         .left-logo-box {
             width: 80px;
-            height: 40px;
+            height: 45px;
         }
 
         .left-logo-box img {
-            height: 40px;
+            height: 45px;
         }
 
         .right-logo-box {
             display: flex;
             width: 280px;
-            height: 40px;
-            margin-left: 200px;
+            height: 45px;
+            margin-left: 165px;
         }
 
         .right-logo-box img {
-            height: 40px;
+            height: 45px;
         }
 
         .banner-section {
@@ -237,7 +237,7 @@
 
         </header>
         <div class="banner-section">
-            <img src="https://igot.blob.core.windows.net/public/emailHeaders/Banner_with_pm.png">
+            <img src="https://www.igot-dev.in/img/sliderImg1.jpg">
         
         </div>
         <div class="content-main-section">
