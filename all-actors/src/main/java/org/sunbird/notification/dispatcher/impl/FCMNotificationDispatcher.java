@@ -32,8 +32,9 @@ public class FCMNotificationDispatcher implements INotificationDispatcher {
      NotificationFactory.getInstance(NotificationFactory.instanceType.httpClinet.name());
   private ObjectMapper mapper = new ObjectMapper();
   private String topic = null;
-  private Producer<Long, String> producer = null;
   private final int BATCH_SIZE = 100;
+
+  private Producer<Long, String> producer = null;
   private static FCMNotificationDispatcher instance;
 
   public static FCMNotificationDispatcher getInstance() {
@@ -48,7 +49,6 @@ public class FCMNotificationDispatcher implements INotificationDispatcher {
   }
 
   private FCMNotificationDispatcher() {
-    initKafkaClient();
   }
 
   /**
@@ -106,27 +106,6 @@ public class FCMNotificationDispatcher implements INotificationDispatcher {
     return response;
   }
 
-  /** Initialises Kafka producer required for dispatching messages on Kafka. */
-  private void initKafkaClient() {
-    if (producer == null) {
-      Config config = ConfigUtil.getConfig();
-      String BOOTSTRAP_SERVERS = config.getString(Constant.SUNBIRD_NOTIFICATION_KAFKA_SERVICE_CONFIG);
-      topic = config.getString(Constant.SUNBIRD_NOTIFICATION_KAFKA_TOPIC);
-
-      logger.info(
-          "FCMNotificationDispatcher:initKafkaClient: Bootstrap servers = "
-              + BOOTSTRAP_SERVERS);
-      logger.info("FCMNotificationDispatcher:initKafkaClient: topic = " + topic);
-      try {
-        producer =
-            KafkaClient.createProducer(
-                BOOTSTRAP_SERVERS, Constant.KAFKA_CLIENT_NOTIFICATION_PRODUCER);
-      } catch (Exception e) {
-        logger.error("FCMNotificationDispatcher:initKafkaClient: An exception occurred.", e);
-      }
-    }
-  }
-
   private FCMResponse dispatchAsync(NotificationRequest notification, Map<String,Object> context) {
     FCMResponse response = null;
     if (CollectionUtils.isNotEmpty(notification.getIds())) {
@@ -172,6 +151,26 @@ public class FCMNotificationDispatcher implements INotificationDispatcher {
       logger.info(context,"FCMNotificationDispatcher:writeDataToKafka: Kafka producer is not initialised.");
     }
     return response;
+  }
+
+  private void initKafkaClientProducer() {
+    if (producer == null) {
+      Config config = ConfigUtil.getConfig();
+      String BOOTSTRAP_SERVERS = config.getString(Constant.SUNBIRD_NOTIFICATION_KAFKA_SERVICE_CONFIG);
+      topic = config.getString(Constant.SUNBIRD_NOTIFICATION_KAFKA_TOPIC);
+
+      logger.info(
+              "KafkaIntialization:initKafkaClient: Bootstrap servers = "
+                      + BOOTSTRAP_SERVERS);
+      logger.info("KafkaIntialization:initKafkaClient: topic = " + topic);
+      try {
+        producer =
+                KafkaClient.createProducer(
+                        BOOTSTRAP_SERVERS, Constant.KAFKA_CLIENT_NOTIFICATION_PRODUCER);
+      } catch (Exception e) {
+        logger.error("KafkaIntialization:initKafkaClient: An exception occurred.", e);
+      }
+    }
   }
 
   private String getTopicMessage(NotificationRequest notification, Map<String,Object> context) {

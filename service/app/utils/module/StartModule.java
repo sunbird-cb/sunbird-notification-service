@@ -14,7 +14,7 @@ public class StartModule extends AbstractModule {
         protected void configure() {
             bind(utils.module.SignalHandler.class).asEagerSingleton();
             bind(utils.ApplicationStart.class).asEagerSingleton();
-
+            bind(utils.module.KafkaIntialization.class).asEagerSingleton();
         }
 
 }

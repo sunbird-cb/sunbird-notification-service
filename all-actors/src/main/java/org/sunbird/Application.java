@@ -3,6 +3,7 @@ package org.sunbird;
 import akka.actor.ActorRef;
 import org.sunbird.actor.core.ActorCache;
 import org.sunbird.actor.core.ActorService;
+import org.sunbird.actor.core.KafkaInit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class Application {
         List<String> actorClassPaths = new ArrayList<>();
         actorClassPaths.add("org.sunbird");
         ActorService.getInstance().init(actorSystemName, actorClassPaths);
+        //KafkaInit.getInstance().init();
     }
 
 
