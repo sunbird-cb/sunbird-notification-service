@@ -26,6 +26,8 @@ public class Email {
   private static Properties props = null;
   private String host;
   private String port;
+
+  private String Is_TLS_Enable;
   private String userName;
   private String password;
   private String fromEmail;
@@ -86,6 +88,7 @@ public class Email {
     boolean response = true;
     host = Util.readValue(Constants.EMAIL_SERVER_HOST);
     port = Util.readValue(Constants.EMAIL_SERVER_PORT);
+    Is_TLS_Enable=Util.readValue(Constants.Is_TLS_Enable);
     userName = Util.readValue(Constants.EMAIL_SERVER_USERNAME);
     password = Util.readValue(Constants.EMAIL_SERVER_PASSWORD);
     fromEmail = Util.readValue(Constants.EMAIL_SERVER_FROM);
@@ -128,6 +131,11 @@ public class Email {
     props = System.getProperties();
     props.put("mail.smtp.host", host);
     props.put("mail.smtp.socketFactory.port", port);
+    if(Is_TLS_Enable =="true")
+    {
+      props.put("mail.smtp.starttls.enable", "true");
+      props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+    }
     /*
      * props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
      */
