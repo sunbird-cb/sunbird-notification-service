@@ -6,6 +6,8 @@ public class Constants {
   public static final String EMAIL_SERVER_HOST = "sunbird_mail_server_host";
   public static final String EMAIL_SERVER_PASSWORD = "sunbird_mail_server_password";
   public static final String EMAIL_SERVER_PORT = "sunbird_mail_server_port";
+
+  public static final String Is_TLS_Enable = "sunbird_mail_server_use_tls";
   public static final String EMAIL_SERVER_USERNAME = "sunbird_mail_server_username";
   public static final String FROM_EMAIL = "fromEmail";
   public static final String EMAIL_ORG_IMG_URL = "orgImageUrl";
