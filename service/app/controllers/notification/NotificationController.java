@@ -55,13 +55,13 @@ public class NotificationController extends BaseController {
    * @return a CompletableFuture of success response
    */
   public CompletionStage<Result> sendSyncNotification() {
-    logger.info("method call started for sendNotification ");
+    logger.info("method call started for sendSyncNotification ");
     request().getHeaders().addHeader(NOTIFICATION_DELIVERY_MODE, "sync");
     Request request = new Request();
     try {
       request = RequestMapper.createSBRequest(request());
       CompletionStage<Result> response = handleRequest(request, null, NOTIFICATION, request());
-      logger.info("Method call end for sendNotification");
+      logger.info("Method call end for sendSyncNotification");
       return response;
     }catch (Exception ex){
       return CompletableFuture.completedFuture(

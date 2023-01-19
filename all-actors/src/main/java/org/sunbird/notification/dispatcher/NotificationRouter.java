@@ -76,6 +76,7 @@ public class NotificationRouter {
       List<NotificationRequest> notificationRequestList, boolean isDryRun, boolean isSync, Map<String,Object> context)
       throws BaseException {
     logger.info(context, "making call to route method");
+    logger.info("route method parameter=="+notificationRequestList+" isDryRun=="+isDryRun+" isSync=="+isSync+" context=="+context);
     Response response = new Response();
     if (CollectionUtils.isNotEmpty(notificationRequestList)) {
       Map<String, Object> responseMap = new HashMap<String, Object>();
@@ -94,15 +95,19 @@ public class NotificationRouter {
             message =
                 getMessage(
                     notification.getTemplate().getData(), notification.getTemplate().getParams(), context);
+            logger.info("notification message==="+message);
             notification.getTemplate().setData(message);
           } else if (notification.getTemplate() != null
               && StringUtils.isNotBlank(notification.getTemplate().getId())) {
             String data = createNotificationBody(notification, context);
+            logger.info("notification data==="+data);
             notification.getTemplate().setData(data);
           }
           if (isSync) {
+            logger.info("notification syncDispatch=="+notification);
             response = syDispatcher.syncDispatch(notification,  context);
           } else {
+            logger.info("notification writeDataToKafka=="+notification+" response=="+response+" isDryRun=="+isDryRun+" responseMap=="+responseMap+" isSync=="+isSync+" context=="+context);
             response = writeDataToKafka(notification, response, isDryRun, responseMap, isSync, context);
           }
         }
