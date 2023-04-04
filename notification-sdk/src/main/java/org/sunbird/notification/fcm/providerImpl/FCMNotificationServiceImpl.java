@@ -1,34 +1,31 @@
 package org.sunbird.notification.fcm.providerImpl;
 
-import com.google.firebase.messaging.BatchResponse;
-import com.google.firebase.messaging.FirebaseMessagingException;
-import com.google.firebase.messaging.Message;
-import com.google.firebase.messaging.MulticastMessage;
-import com.google.firebase.messaging.SendResponse;
+import com.google.firebase.messaging.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.sunbird.notification.fcm.provider.FCMInitializer;
 import org.sunbird.notification.fcm.provider.IFCMNotificationService;
 import org.sunbird.notification.utils.FCMResponse;
+import org.sunbird.request.LoggerUtil;
 
 public class FCMNotificationServiceImpl implements IFCMNotificationService {
-  private static Logger logger = LogManager.getLogger("FCMNotificationServiceImpl");
+  private static LoggerUtil logger = new LoggerUtil(FCMNotificationServiceImpl.class);
 
   @Override
   public FCMResponse sendSingleDeviceNotification(
-      String deviceId, Map<String, String> data, boolean isDryRun) {
-    logger.info("sendSinfleDeviceNotification method started.");
+      String deviceId, Map<String, String> data, boolean isDryRun, Map<String,Object> context) {
+    logger.info(context, "sendSinfleDeviceNotification method started.");
     Message message = Message.builder().putAllData(data).setToken(deviceId).build();
-    logger.info("Message going to be sent:" + message);
+    logger.info(context, "Message going to be sent:" + message);
     String response = null;
     try {
       response = FCMInitializer.getInstance().send(message, isDryRun);
-      logger.info("Response from FCM :" + response);
+      logger.info(context, "Response from FCM :" + response);
     } catch (FirebaseMessagingException e) {
-      logger.error("Exception occured during notification sent: " + e.getMessage());
+      logger.error(context,"Exception occured during notification sent: " + e.getMessage(),e);
       e.printStackTrace();
     }
     return null;
@@ -36,7 +33,7 @@ public class FCMNotificationServiceImpl implements IFCMNotificationService {
 
   @Override
   public FCMResponse sendMultiDeviceNotification(
-      List<String> deviceIds, Map<String, String> data, boolean isDryRun) {
+      List<String> deviceIds, Map<String, String> data, boolean isDryRun, Map<String,Object> context) {
     List<String> responseDetails = new ArrayList<String>();
     if (deviceIds == null || deviceIds.size() == 0 || deviceIds.size() > 100) {
       throw new RuntimeException(
@@ -46,9 +43,10 @@ public class FCMNotificationServiceImpl implements IFCMNotificationService {
         MulticastMessage.builder().putAllData(data).addAllTokens(deviceIds).build();
     BatchResponse responses = null;
     try {
-      responses = FCMInitializer.getInstance().sendMulticast(message, isDryRun);
+        logger.info(message.toString());
+        responses = FCMInitializer.getInstance().sendMulticast(message, isDryRun);
     } catch (FirebaseMessagingException e) {
-      logger.info("exception occured==" + e.getMessage());
+      logger.error(context, "exception occured==" + e.getMessage(), e);
       throw new RuntimeException("FCM Server error");
     }
     List<SendResponse> responseList = responses.getResponses();
@@ -60,17 +58,19 @@ public class FCMNotificationServiceImpl implements IFCMNotificationService {
 
   @Override
   public FCMResponse sendTopicNotification(
-      String topic, Map<String, String> data, boolean isDryRun) {
+    String topic, Map<String, String> data, boolean isDryRun, Map<String,Object> context) {
     Message message = Message.builder().putAllData(data).setTopic(topic).build();
-    logger.info("Message going to be sent:" + message);
+    logger.info(context, "Message going to be sent:" + message);
     String response = null;
     try {
       response = FCMInitializer.getInstance().send(message, isDryRun);
-      logger.info("Response from FCM :" + response);
+      logger.info(context, "Response from FCM :" + response);
     } catch (FirebaseMessagingException e) {
-      logger.error("Exception occured during notification sent: " + e.getMessage());
+      logger.error(context,"Exception occured during notification sent: " + e.getMessage(), e);
       e.printStackTrace();
     }
+    logger.info(message.toString());
+
     return null;
   }
 }

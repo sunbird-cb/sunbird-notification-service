@@ -1,9 +1,8 @@
 version: 2.1
 jobs:
   build:
-    docker:
-      - image: circleci/openjdk:8-jdk
-    working_directory: ~/project
+    machine:
+      image: ubuntu-2004:202008-01
     steps:
       - checkout
       - restore_cache:
@@ -15,7 +14,7 @@ jobs:
           paths: ~/.m2
       - run:
           name: Analyze on SonarCloud
-          command: mvn verify sonar:sonar -Dsonar.projectKey=project-sunbird_sunbird-notification-service -Dsonar.organization=project-sunbird -Dsonar.host.url=https://sonarcloud.io -Dsonar.coverage.jacoco.xmlReportPaths=/home/circleci/project/service/target/site/jacoco/jacoco.xml,/home/circleci/project/notification-sdk/target/site/jacoco/jacoco.xml
+          command: mvn verify sonar:sonar -Dsonar.projectKey=project-sunbird_sunbird-notification-service -Dsonar.organization=project-sunbird  -Dsonar.host.url=https://sonarcloud.io -Dsonar.coverage.exclusions=**/cassandra-utils/**,**/sb-actor/**,**/sb-telemetry-utils/**,**/sb-utils/**,**/models/**,**/bean/*,**/sb-common/** -Dsonar.coverage.jacoco.xmlReportPaths=/home/circleci/project/reports/target/jacoco/jacoco.xml
 
 workflows:
   version: 2.1

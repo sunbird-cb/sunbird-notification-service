@@ -2,30 +2,31 @@
 package org.sunbird.notification.email.service.impl;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.sunbird.notification.beans.EmailConfig;
 import org.sunbird.notification.beans.EmailRequest;
 import org.sunbird.notification.email.Email;
 import org.sunbird.notification.email.service.IEmailService;
+import org.sunbird.request.LoggerUtil;
+
+import java.util.Map;
 
 /** @author manzarul */
 public class SmtpEMailServiceImpl implements IEmailService {
-  private static Logger logger = LogManager.getLogger(SmtpEMailServiceImpl.class);
+  private static LoggerUtil logger = new LoggerUtil(SmtpEMailServiceImpl.class);
   private Email email = null;
 
   public SmtpEMailServiceImpl() {
-    email = new Email();
+    email = Email.getInstance();
   }
 
   public SmtpEMailServiceImpl(EmailConfig config) {
-    email = new Email(config);
+    email = Email.getInstance(config);
   }
 
   @Override
-  public boolean sendEmail(EmailRequest emailReq) {
+  public boolean sendEmail(EmailRequest emailReq, Map<String,Object> context) {
     if (emailReq == null) {
-      logger.info("Email request is null or empty:");
+      logger.info(context, "Email request is null or empty:");
       return false;
       // either email object has bcc or to list size more than 1 then pass it as bcc.
     } else if (CollectionUtils.isNotEmpty(emailReq.getBcc()) || emailReq.getTo().size() > 1) {

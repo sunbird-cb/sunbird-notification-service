@@ -20,7 +20,7 @@ public interface IFCMNotificationService {
    * @return FCMResponse
    */
   public FCMResponse sendSingleDeviceNotification(
-      String deviceId, Map<String, String> data, boolean isDryRun);
+      String deviceId, Map<String, String> data, boolean isDryRun, Map<String,Object> context);
 
   /**
    * This api will be used for sending notification to multiple device. max 100 device notification
@@ -32,7 +32,7 @@ public interface IFCMNotificationService {
    * @return FCMResponse
    */
   public FCMResponse sendMultiDeviceNotification(
-      List<String> deviceIds, Map<String, String> data, boolean isDryRun);
+      List<String> deviceIds, Map<String, String> data, boolean isDryRun, Map<String,Object> context);
 
   /**
    * Method used for sending topic based notification
@@ -43,5 +43,5 @@ public interface IFCMNotificationService {
    * @return FCMResponse
    */
   public FCMResponse sendTopicNotification(
-      String topic, Map<String, String> data, boolean isDryRun);
+    String topic, Map<String, String> data, boolean isDryRun, Map<String,Object> context);
 }

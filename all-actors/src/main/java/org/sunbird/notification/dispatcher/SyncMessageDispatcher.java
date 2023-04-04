@@ -11,8 +11,10 @@ import org.sunbird.notification.email.service.impl.IEmailProviderFactory;
 import org.sunbird.notification.sms.provider.ISmsProvider;
 import org.sunbird.notification.sms.providerimpl.Msg91SmsProviderFactory;
 import org.sunbird.pojo.NotificationRequest;
-import org.sunbird.response.Response;
+import org.sunbird.common.response.Response;
 import org.sunbird.util.Constant;
+
+import java.util.Map;
 
 /** @author manzarul */
 public class SyncMessageDispatcher {
@@ -20,16 +22,16 @@ public class SyncMessageDispatcher {
   private IEmailService emailservice;
   private ISmsProvider smsProvider;
 
-  public Response syncDispatch(NotificationRequest notification, boolean isDryRun) {
+  public Response syncDispatch(NotificationRequest notification, Map<String,Object> context) {
     if (notification.getMode().equalsIgnoreCase(DeliveryMode.phone.name())
         && notification.getDeliveryType().equalsIgnoreCase(DeliveryType.message.name())) {
-      return syncMessageDispatch(notification, isDryRun);
+      return syncMessageDispatch(notification, context);
     }
 
-    return syncEmailDispatch(notification, isDryRun);
+    return syncEmailDispatch(notification, context);
   }
 
-  private Response syncEmailDispatch(NotificationRequest notificationRequest, boolean isDryRun) {
+  private Response syncEmailDispatch(NotificationRequest notificationRequest, Map<String,Object> context) {
     EmailRequest request =
         new EmailRequest(
             notificationRequest.getConfig().getSubject(),
@@ -39,17 +41,17 @@ public class SyncMessageDispatcher {
             null,
             notificationRequest.getTemplate().getData(),
             null);
-    boolean emailResponse = getEmailInstance().sendEmail(request);
+    boolean emailResponse = getEmailInstance().sendEmail(request, context);
     Response response = new Response();
     response.put(Constant.RESPONSE, emailResponse);
     return response;
   }
 
-  private Response syncMessageDispatch(NotificationRequest notificationRequest, boolean isDryRun) {
+  private Response syncMessageDispatch(NotificationRequest notificationRequest, Map<String,Object> context) {
     Response response = new Response();
     boolean smsResponse =
         getSmsInstance()
-            .bulkSms(notificationRequest.getIds(), notificationRequest.getTemplate().getData());
+            .bulkSms(notificationRequest.getIds(), notificationRequest.getTemplate().getData(), context);
     response.put(Constant.RESPONSE, smsResponse);
     return response;
   }
