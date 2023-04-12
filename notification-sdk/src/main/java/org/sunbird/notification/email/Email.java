@@ -30,6 +30,7 @@ public class Email {
   private String password;
   private String fromEmail;
   private static Email instance;
+  private String isTlsEnabled;
 
   private Email() {
     init();
@@ -89,6 +90,7 @@ public class Email {
     userName = Util.readValue(Constants.EMAIL_SERVER_USERNAME);
     password = Util.readValue(Constants.EMAIL_SERVER_PASSWORD);
     fromEmail = Util.readValue(Constants.EMAIL_SERVER_FROM);
+    isTlsEnabled = Util.readValue(Constants.Is_TLS_Enable);
     if (StringUtils.isBlank(host)
       || StringUtils.isBlank(port)
       || StringUtils.isBlank(userName)
@@ -133,6 +135,10 @@ public class Email {
      */
     props.put("mail.smtp.auth", "true");
     props.put("mail.smtp.port", port);
+    if ("true".equalsIgnoreCase(isTlsEnabled)) {
+      props.put("mail.smtp.starttls.enable", "true");
+      props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+    }
   }
 
   /**
