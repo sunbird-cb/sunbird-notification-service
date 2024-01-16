@@ -172,7 +172,7 @@ public class Email {
       addRecipient(message, Message.RecipientType.CC, ccEmailList);
       setMessageAttribute(message, fromEmail, subject, body);
       response = sendEmail(session, message);
-      logger.info("Mail Send Status : " + response);
+      logger.debug("Status of Email Sent is : " + response);
     } catch (Exception e) {
       response = false;
       logger.error("Exception occured during email sending " + e, e);
@@ -220,6 +220,7 @@ public class Email {
       addRecipient(message, Message.RecipientType.BCC, bccList);
       setMessageAttribute(message, fromEmail, subject, body);
       sentStatus = sendEmail(session, message);
+      logger.debug("Status of Sent Email is : " + sentStatus);
     } catch (Exception e) {
       sentStatus = false;
       logger.error("SendMail:sendMail: Exception occurred with message = " + e.getMessage(), e);
