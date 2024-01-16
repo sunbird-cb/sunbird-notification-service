@@ -36,6 +36,7 @@ public class SmtpEMailServiceImpl implements IEmailService {
           emailReq.getBody(),
           CollectionUtils.isEmpty(emailReq.getBcc()) ? emailReq.getTo() : emailReq.getBcc());
     } else if (CollectionUtils.isNotEmpty(emailReq.getCc())) {
+      logger.info("Email List in cc : " + emailReq.getCc() + "Email List in To : " + emailReq.getTo());
       return email.sendMail(
           emailReq.getTo(), emailReq.getSubject(), emailReq.getBody(), emailReq.getCc());
     } else {
