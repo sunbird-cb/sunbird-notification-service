@@ -166,11 +166,13 @@ public class Email {
     boolean response = true;
     Session session = getSession();
     try {
+      logger.debug("Value of from Email Value : " + fromEmail);
       MimeMessage message = new MimeMessage(session);
       addRecipient(message, Message.RecipientType.TO, emailList);
       addRecipient(message, Message.RecipientType.CC, ccEmailList);
       setMessageAttribute(message, fromEmail, subject, body);
       response = sendEmail(session, message);
+      logger.debug("Status of Email Sent is : " + response);
     } catch (Exception e) {
       response = false;
       logger.error("Exception occured during email sending " + e, e);
@@ -218,6 +220,7 @@ public class Email {
       addRecipient(message, Message.RecipientType.BCC, bccList);
       setMessageAttribute(message, fromEmail, subject, body);
       sentStatus = sendEmail(session, message);
+      logger.debug("Status of Sent Email is : " + sentStatus);
     } catch (Exception e) {
       sentStatus = false;
       logger.error("SendMail:sendMail: Exception occurred with message = " + e.getMessage(), e);

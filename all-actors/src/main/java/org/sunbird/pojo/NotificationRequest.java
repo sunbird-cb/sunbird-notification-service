@@ -23,6 +23,8 @@ public class NotificationRequest {
 
   private ObjectMapper mapper = new ObjectMapper();
 
+  private List<String> copyEmail;
+
   public NotificationRequest() {}
 
   public String getMode() {
@@ -71,6 +73,14 @@ public class NotificationRequest {
 
   public void setRawData(JsonNode rawData) {
     this.rawData = rawData;
+  }
+
+  public List<String> getCopyEmail() {
+    return copyEmail;
+  }
+
+  public void setCopyEmail(List<String> copyEmail) {
+    this.copyEmail = copyEmail;
   }
 
   @Override

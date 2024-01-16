@@ -100,6 +100,7 @@ public class NotificationRouter {
             String data = createNotificationBody(notification, context);
             notification.getTemplate().setData(data);
           }
+          logger.debug(context, "Value of isSync : " + isSync );
           if (isSync) {
             response = syDispatcher.syncDispatch(notification,  context);
           } else {

@@ -25,20 +25,24 @@ public class SmtpEMailServiceImpl implements IEmailService {
 
   @Override
   public boolean sendEmail(EmailRequest emailReq, Map<String,Object> context) {
+    logger.debug("Email List in cc : " + emailReq.getCc() + "Email List in To : " + emailReq.getTo());
     if (emailReq == null) {
       logger.info(context, "Email request is null or empty:");
       return false;
       // either email object has bcc or to list size more than 1 then pass it as bcc.
-    } else if (CollectionUtils.isNotEmpty(emailReq.getBcc()) || emailReq.getTo().size() > 1) {
+    } else if (CollectionUtils.isNotEmpty(emailReq.getBcc()) && emailReq.getTo().size() > 1) {
+      logger.debug("Into bcc condition block");
       return email.sendEmail(
           email.getFromEmail(),
           emailReq.getSubject(),
           emailReq.getBody(),
           CollectionUtils.isEmpty(emailReq.getBcc()) ? emailReq.getTo() : emailReq.getBcc());
-    } else if (CollectionUtils.isNotEmpty(emailReq.getCc())) {
+    } else if (CollectionUtils.isNotEmpty(emailReq.getCc()) && emailReq.getTo().size() > 1) {
+      logger.debug("Into cc condition block");
       return email.sendMail(
           emailReq.getTo(), emailReq.getSubject(), emailReq.getBody(), emailReq.getCc());
     } else {
+      logger.debug("Into block without cc or bcc");
       return email.sendMail(emailReq.getTo(), emailReq.getSubject(), emailReq.getBody());
     }
   }
