@@ -171,6 +171,7 @@ public class Email {
       addRecipient(message, Message.RecipientType.CC, ccEmailList);
       setMessageAttribute(message, fromEmail, subject, body);
       response = sendEmail(session, message);
+      logger.info("Mail Send Status : " + response);
     } catch (Exception e) {
       response = false;
       logger.error("Exception occured during email sending " + e, e);
