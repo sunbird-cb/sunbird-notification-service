@@ -166,6 +166,7 @@ public class Email {
     boolean response = true;
     Session session = getSession();
     try {
+      logger.info("Value of from Email Value : " + fromEmail);
       MimeMessage message = new MimeMessage(session);
       addRecipient(message, Message.RecipientType.TO, emailList);
       addRecipient(message, Message.RecipientType.CC, ccEmailList);
