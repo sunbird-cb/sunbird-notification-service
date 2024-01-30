@@ -101,7 +101,7 @@ public class NotificationController extends BaseController {
     Request request = new Request();
     try {
       request = RequestMapper.createSBRequest(request());
-      CompletionStage<Result> response = handleRequest(request, new RequestValidator(), JsonKey.CREATE_NOTIFICATION, request());
+      CompletionStage<Result> response = handleRequest(request, null, JsonKey.CREATE_NOTIFICATION, request());
       logger.info("Method call end for v2 sendNotification");
       return response;
     }catch (Exception ex){
