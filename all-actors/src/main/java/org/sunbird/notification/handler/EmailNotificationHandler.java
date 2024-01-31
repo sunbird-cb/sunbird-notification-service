@@ -1,6 +1,7 @@
 package org.sunbird.notification.handler;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.collections.CollectionUtils;
@@ -53,7 +54,7 @@ public class EmailNotificationHandler implements INotificationHandler{
     }
 
     private NotificationRequest createNotificationObj(NotificationV2Request notificationRequest, Map<String,Object> templateConfig) {
-
+        logger.info("In Create V1 Notification object");
         NotificationRequest notification = new NotificationRequest();
         notification.setIds(notificationRequest.getIds());
         notification.setMode(DeliveryMode.email.name());
@@ -63,10 +64,16 @@ public class EmailNotificationHandler implements INotificationHandler{
         notification.setConfig(config);
         Template template = new Template();
         template.setData((String) ((Map<String,Object>)notificationRequest.getAction().get(JsonKey.TEMPLATE)).get(JsonKey.DATA));
+        template.setId((String) ((Map<String,Object>)notificationRequest.getAction().get(JsonKey.TEMPLATE)).get(JsonKey.ID));
         JsonNode jsonNode = mapper.convertValue((Map<String,Object>)((Map<String,Object>)notificationRequest.getAction().get(JsonKey.TEMPLATE)).get(JsonKey.PARAMS),JsonNode.class);
         template.setParams(jsonNode);
         notification.setTemplate(template);
         notification.setDeliveryType(NotificationRouter.DeliveryType.message.name());
+        try {
+            logger.info("Notification Request is : " + mapper.writeValueAsString(notification));
+        } catch (JsonProcessingException e) {
+            logger.info("Exception occurred while writing notification as json object");
+        }
         return notification;
     }
 }
