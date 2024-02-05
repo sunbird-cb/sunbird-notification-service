@@ -58,13 +58,14 @@ public class EmailNotificationHandler implements INotificationHandler{
         NotificationRequest notification = new NotificationRequest();
         notification.setIds(notificationRequest.getIds());
         notification.setMode(DeliveryMode.email.name());
+        logger.info("cc email value is : " + notificationRequest.getCopyEmail());
+        notification.setCopyEmail(notificationRequest.getCopyEmail());
         Config config = new Config();
         config.setSubject((String) templateConfig.get(JsonKey.SUBJECT));
         config.setSender((String) templateConfig.get(JsonKey.SENDER));
         notification.setConfig(config);
         Template template = new Template();
         template.setData((String) ((Map<String,Object>)notificationRequest.getAction().get(JsonKey.TEMPLATE)).get(JsonKey.DATA));
-        template.setId((String) ((Map<String,Object>)notificationRequest.getAction().get(JsonKey.TEMPLATE)).get(JsonKey.ID));
         JsonNode jsonNode = mapper.convertValue((Map<String,Object>)((Map<String,Object>)notificationRequest.getAction().get(JsonKey.TEMPLATE)).get(JsonKey.PARAMS),JsonNode.class);
         template.setParams(jsonNode);
         notification.setTemplate(template);
