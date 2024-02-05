@@ -58,6 +58,7 @@ public class EmailNotificationHandler implements INotificationHandler{
         NotificationRequest notification = new NotificationRequest();
         notification.setIds(notificationRequest.getIds());
         notification.setMode(DeliveryMode.email.name());
+        logger.info("cc email value is : " + notificationRequest.getCopyEmail());
         notification.setCopyEmail(notificationRequest.getCopyEmail());
         Config config = new Config();
         config.setSubject((String) templateConfig.get(JsonKey.SUBJECT));
