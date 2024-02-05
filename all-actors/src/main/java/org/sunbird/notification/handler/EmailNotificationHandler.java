@@ -66,8 +66,6 @@ public class EmailNotificationHandler implements INotificationHandler{
         notification.setConfig(config);
         Template template = new Template();
         template.setData((String) ((Map<String,Object>)notificationRequest.getAction().get(JsonKey.TEMPLATE)).get(JsonKey.DATA));
-        logger.info("Email Template Id is : " + (String) ((Map<String,Object>)notificationRequest.getAction().get(JsonKey.TEMPLATE)).get(JsonKey.ID));
-        template.setId((String) ((Map<String,Object>)notificationRequest.getAction().get(JsonKey.TEMPLATE)).get(JsonKey.ID));
         JsonNode jsonNode = mapper.convertValue((Map<String,Object>)((Map<String,Object>)notificationRequest.getAction().get(JsonKey.TEMPLATE)).get(JsonKey.PARAMS),JsonNode.class);
         template.setParams(jsonNode);
         notification.setTemplate(template);
