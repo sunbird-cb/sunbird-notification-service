@@ -9,6 +9,7 @@ public class NotificationV2Request {
     private int priority;
     private String type;
     private Map<String,Object> action;
+    private List<String> copyEmail;
 
     public List<String> getIds() {
         return ids;
@@ -40,5 +41,13 @@ public class NotificationV2Request {
 
     public void setAction(Map<String,Object> action) {
         this.action = action;
+    }
+
+    public List<String> getCopyEmail() {
+        return copyEmail;
+    }
+
+    public void setCopyEmail(List<String> copyEmail) {
+        this.copyEmail = copyEmail;
     }
 }
