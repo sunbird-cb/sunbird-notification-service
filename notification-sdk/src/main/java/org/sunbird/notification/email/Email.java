@@ -310,7 +310,7 @@ public class Email {
       logger.debug("Status of Email Sent is : " + response);
     } catch (Exception e) {
       response = false;
-      logger.error("Exception occured during email sending " + e, e);
+      logger.error("Exception occured during email sending " + e.getMessage(), e);
     }
     return response;
   }
