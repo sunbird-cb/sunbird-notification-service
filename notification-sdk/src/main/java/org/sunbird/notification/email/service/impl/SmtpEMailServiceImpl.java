@@ -29,21 +29,11 @@ public class SmtpEMailServiceImpl implements IEmailService {
     if (emailReq == null) {
       logger.info(context, "Email request is null or empty:");
       return false;
-      // either email object has bcc or to list size more than 1 then pass it as bcc.
-    } else if (CollectionUtils.isNotEmpty(emailReq.getBcc()) && emailReq.getTo().size() > 1) {
-      logger.info("Into bcc condition block");
-      return email.sendEmail(
-          email.getFromEmail(),
-          emailReq.getSubject(),
-          emailReq.getBody(),
-          CollectionUtils.isEmpty(emailReq.getBcc()) ? emailReq.getTo() : emailReq.getBcc());
-    } else if (CollectionUtils.isNotEmpty(emailReq.getCc()) && emailReq.getTo().size() > 1) {
-      logger.info("Into cc condition block");
-      return email.sendMail(
-          emailReq.getTo(), emailReq.getSubject(), emailReq.getBody(), emailReq.getCc());
     } else {
-      logger.info("Into block without cc or bcc");
-      return email.sendMail(emailReq.getTo(), emailReq.getSubject(), emailReq.getBody());
+      logger.info("Email Request To List : " + emailReq.getTo());
+      logger.info("Email Request cc List : " + emailReq.getCc());
+      logger.info("Email Request bcc List : " + emailReq.getBcc());
+      return email.sendMail(emailReq.getTo(), emailReq.getSubject(), emailReq.getBody(), emailReq.getCc(), emailReq.getBcc());
     }
   }
 }
