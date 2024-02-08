@@ -30,9 +30,6 @@ public class SmtpEMailServiceImpl implements IEmailService {
       logger.info(context, "Email request is null or empty:");
       return false;
     } else {
-      logger.info("Email Request To List : " + emailReq.getTo());
-      logger.info("Email Request cc List : " + emailReq.getCc());
-      logger.info("Email Request bcc List : " + emailReq.getBcc());
       return email.sendMail(emailReq.getTo(), emailReq.getSubject(), emailReq.getBody(), emailReq.getCc(), emailReq.getBcc());
     }
   }
