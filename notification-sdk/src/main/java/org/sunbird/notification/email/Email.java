@@ -136,8 +136,8 @@ public class Email {
     props.put("mail.smtp.auth", "true");
     props.put("mail.smtp.port", port);
     if ("true".equalsIgnoreCase(isTlsEnabled)) {
-      props.put("mail.smtp.starttls.enable", "true");
-      props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+      props.put("mail.smtp.starttls.enable", Constants.TRUE);
+      props.put("mail.smtp.ssl.protocols", Constants.TLS_VERSION_V1_2);
     }
   }
 
@@ -166,13 +166,11 @@ public class Email {
     boolean response = true;
     Session session = getSession();
     try {
-      logger.debug("Value of from Email Value : " + fromEmail);
       MimeMessage message = new MimeMessage(session);
       addRecipient(message, Message.RecipientType.TO, emailList);
       addRecipient(message, Message.RecipientType.CC, ccEmailList);
       setMessageAttribute(message, fromEmail, subject, body);
       response = sendEmail(session, message);
-      logger.debug("Status of Email Sent is : " + response);
     } catch (Exception e) {
       response = false;
       logger.error("Exception occured during email sending " + e, e);
@@ -220,7 +218,6 @@ public class Email {
       addRecipient(message, Message.RecipientType.BCC, bccList);
       setMessageAttribute(message, fromEmail, subject, body);
       sentStatus = sendEmail(session, message);
-      logger.debug("Status of Sent Email is : " + sentStatus);
     } catch (Exception e) {
       sentStatus = false;
       logger.error("SendMail:sendMail: Exception occurred with message = " + e.getMessage(), e);
@@ -275,9 +272,8 @@ public class Email {
     try {
       transport = getTransportClient(session);
       transport.sendMessage(message, message.getAllRecipients());
-        logger.info(message.getContent().toString());
     } catch (Exception e) {
-      logger.error("SendMail:sendMail: Exception occurred with message = " + e.getMessage(), e);
+      logger.error("SendMail:sendMail: Exception occurred while sending message = " + message.getContent().toString(), e);
       response = false;
     } finally {
       try {
@@ -285,6 +281,24 @@ public class Email {
       } catch (MessagingException e) {
         logger.error("Exception occurred while closing client.",e);
       }
+    }
+    return response;
+  }
+
+  public boolean sendMail(
+          List<String> emailList, String subject, String body, List<String> ccEmailList, List<String> bccList) {
+    boolean response = true;
+    Session session = getSession();
+    try {
+      MimeMessage message = new MimeMessage(session);
+      addRecipient(message, Message.RecipientType.TO, emailList);
+      addRecipient(message, Message.RecipientType.CC, ccEmailList);
+      addRecipient(message, Message.RecipientType.BCC, bccList);
+      setMessageAttribute(message, fromEmail, subject, body);
+      response = sendEmail(session, message);
+    } catch (Exception e) {
+      response = false;
+      logger.error("Exception occured during email sending " + e.getMessage(), e);
     }
     return response;
   }

@@ -1,6 +1,7 @@
 package org.sunbird.notification.handler;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.collections.CollectionUtils;
@@ -53,10 +54,10 @@ public class EmailNotificationHandler implements INotificationHandler{
     }
 
     private NotificationRequest createNotificationObj(NotificationV2Request notificationRequest, Map<String,Object> templateConfig) {
-
         NotificationRequest notification = new NotificationRequest();
         notification.setIds(notificationRequest.getIds());
         notification.setMode(DeliveryMode.email.name());
+        notification.setCopyEmail(notificationRequest.getCopyEmail());
         Config config = new Config();
         config.setSubject((String) templateConfig.get(JsonKey.SUBJECT));
         config.setSender((String) templateConfig.get(JsonKey.SENDER));
