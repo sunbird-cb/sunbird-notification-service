@@ -54,11 +54,9 @@ public class EmailNotificationHandler implements INotificationHandler{
     }
 
     private NotificationRequest createNotificationObj(NotificationV2Request notificationRequest, Map<String,Object> templateConfig) {
-        logger.info("In Create V1 Notification object");
         NotificationRequest notification = new NotificationRequest();
         notification.setIds(notificationRequest.getIds());
         notification.setMode(DeliveryMode.email.name());
-        logger.info("cc email value is : " + notificationRequest.getCopyEmail());
         notification.setCopyEmail(notificationRequest.getCopyEmail());
         Config config = new Config();
         config.setSubject((String) templateConfig.get(JsonKey.SUBJECT));
@@ -70,11 +68,6 @@ public class EmailNotificationHandler implements INotificationHandler{
         template.setParams(jsonNode);
         notification.setTemplate(template);
         notification.setDeliveryType(NotificationRouter.DeliveryType.message.name());
-        try {
-            logger.info("Notification Request is : " + mapper.writeValueAsString(notification));
-        } catch (JsonProcessingException e) {
-            logger.info("Exception occurred while writing notification as json object");
-        }
         return notification;
     }
 }
