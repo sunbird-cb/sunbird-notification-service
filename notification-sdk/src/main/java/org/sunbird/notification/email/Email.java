@@ -272,9 +272,14 @@ public class Email {
     try {
       transport = getTransportClient(session);
       transport.sendMessage(message, message.getAllRecipients());
-      logger.info(message.getContent().toString());
     } catch (Exception e) {
-      logger.error("SendMail:sendMail: Exception occurred with message = " + e.getMessage(), e);
+      String msgContent = "";
+      try {
+        msgContent = message.getContent().toString();
+      } catch (Exception e1) {
+        logger.error("Failed to retrieve the content from message.", e1);
+      }
+      logger.error("SendMail:sendMail: Exception occurred while sending message = " + msgContent, e);
       response = false;
     } finally {
       try {
