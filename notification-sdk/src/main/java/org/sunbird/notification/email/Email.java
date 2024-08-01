@@ -293,6 +293,7 @@ public class Email {
 
   public boolean sendMail(
           List<String> emailList, String subject, String body, List<String> ccEmailList, List<String> bccList) {
+    long startTime = System.currentTimeMillis();
     boolean response = true;
     Session session = getSession();
     try {
@@ -306,6 +307,7 @@ public class Email {
       response = false;
       logger.error("Exception occured during email sending " + e.getMessage(), e);
     }
+    logger.info("Email Sent. Time taken (in ms): " + (System.currentTimeMillis() - startTime));
     return response;
   }
 
