@@ -31,10 +31,15 @@ public class Email {
   private String fromEmail;
   private static Email instance;
   private String isTlsEnabled;
+  private final String resetInterval = Util.readValue("email_connection_reset_interval");
+  private volatile long timer = 0l;
+  Session session;
+  Transport transport;
 
   private Email() {
     init();
     initProps();
+    resetConnection();
   }
 
   public static Email getInstance() {
@@ -148,8 +153,8 @@ public class Email {
    * @param body email body
    * @param subject Subject of email
    */
-  public boolean sendMail(List<String> emailList, String subject, String body) {
-    return sendMail(emailList, subject, body, null);
+  public boolean sendMail_old(List<String> emailList, String subject, String body) {
+    return sendMail_old(emailList, subject, body, null);
   }
 
   /**
@@ -161,8 +166,9 @@ public class Email {
    * @param ccEmailList List of Cc emails
    * @return boolean
    */
-  public boolean sendMail(
+  public boolean sendMail_old(
     List<String> emailList, String subject, String body, List<String> ccEmailList) {
+    long startTime = System.currentTimeMillis();
     boolean response = true;
     Session session = getSession();
     try {
@@ -170,11 +176,12 @@ public class Email {
       addRecipient(message, Message.RecipientType.TO, emailList);
       addRecipient(message, Message.RecipientType.CC, ccEmailList);
       setMessageAttribute(message, fromEmail, subject, body);
-      response = sendEmail(session, message);
+      response = sendEmail_old(session, message);
     } catch (Exception e) {
       response = false;
       logger.error("Exception occured during email sending " + e, e);
     }
+    logger.info("Email Sent. Time taken (in ms): " + (System.currentTimeMillis() - startTime));
     return response;
   }
 
@@ -195,7 +202,7 @@ public class Email {
       message.setSubject(subject);
       Multipart multipart = createMultipartData(emailBody, filePath);
       setMessageAttribute(message, fromEmail, subject, multipart);
-      sendEmail(session, message);
+      sendEmail_old(session, message);
     } catch (Exception e) {
       logger.error("Exception occured during email sending " + e, e);
     }
@@ -210,18 +217,20 @@ public class Email {
    * @param bccList recipient bcc list
    * @return boolean
    */
-  public boolean sendEmail(String fromEmail, String subject, String body, List<String> bccList) {
+  public boolean sendEmail_old(String fromEmail, String subject, String body, List<String> bccList) {
     boolean sentStatus = true;
+    long startTime = System.currentTimeMillis();
     try {
       Session session = getSession();
       MimeMessage message = new MimeMessage(session);
       addRecipient(message, Message.RecipientType.BCC, bccList);
       setMessageAttribute(message, fromEmail, subject, body);
-      sentStatus = sendEmail(session, message);
+      sentStatus = sendEmail_old(session, message);
     } catch (Exception e) {
       sentStatus = false;
       logger.error("SendMail:sendMail: Exception occurred with message = " + e.getMessage(), e);
     }
+    logger.info("Email Sent. Time taken (in ms): " + (System.currentTimeMillis() - startTime));
     return sentStatus;
   }
 
@@ -242,7 +251,7 @@ public class Email {
   private void addRecipient(MimeMessage message, RecipientType type, List<String> recipient)
     throws AddressException, MessagingException {
     if (CollectionUtils.isEmpty(recipient)) {
-      logger.info("Recipient list is empty or null ");
+      logger.info("Recipient list is empty or null for type : " + type.toString());
       return;
     }
     for (String email : recipient) {
@@ -266,7 +275,7 @@ public class Email {
     message.setContent(multipart, "text/html; charset=utf-8");
   }
 
-  private boolean sendEmail(Session session, MimeMessage message) {
+  private boolean sendEmail_old(Session session, MimeMessage message) {
     Transport transport = null;
     boolean response = true;
     try {
@@ -294,18 +303,27 @@ public class Email {
   public boolean sendMail(
           List<String> emailList, String subject, String body, List<String> ccEmailList, List<String> bccList) {
     boolean response = true;
-    Session session = getSession();
+    long interval = 60000L;
+    if (StringUtils.isNotBlank(resetInterval)) {
+      interval = Long.parseLong(resetInterval);
+    }
+    if (session == null || transport == null || ((System.currentTimeMillis()) - timer >= interval)
+        || (!transport.isConnected())) {
+      resetConnection();
+    }
+    long startTime = System.currentTimeMillis();
     try {
       MimeMessage message = new MimeMessage(session);
       addRecipient(message, Message.RecipientType.TO, emailList);
       addRecipient(message, Message.RecipientType.CC, ccEmailList);
       addRecipient(message, Message.RecipientType.BCC, bccList);
       setMessageAttribute(message, fromEmail, subject, body);
-      response = sendEmail(session, message);
+      response = sendEmail(message);
     } catch (Exception e) {
       response = false;
       logger.error("Exception occured during email sending " + e.getMessage(), e);
     }
+    logger.info("Email Sent. Time taken (in ms): " + (System.currentTimeMillis() - startTime));
     return response;
   }
 
@@ -327,5 +345,33 @@ public class Email {
 
   public String getFromEmail() {
     return fromEmail;
+  }
+
+  private void resetConnection() {
+    try {
+      session = Session.getInstance(props, new GMailAuthenticator(userName, password));
+      transport = session.getTransport("smtp");
+      transport.connect(host, userName, password);
+      timer = System.currentTimeMillis();
+    } catch (Exception e) {
+      logger.error("Failed to create / reset SMTP connection. Exception: ", e);
+    }
+  }
+
+  private boolean sendEmail(MimeMessage message) {
+    boolean response = true;
+    try {
+      transport.sendMessage(message, message.getAllRecipients());
+    } catch (Exception e) {
+      String msgContent = "";
+      try {
+        msgContent = message.getContent().toString();
+      } catch (Exception e1) {
+        logger.error("Failed to retrieve the content from message.", e1);
+      }
+      logger.error("SendMail:sendMail: Exception occurred while sending message = " + msgContent, e);
+      response = false;
+    }
+    return response;
   }
 }
